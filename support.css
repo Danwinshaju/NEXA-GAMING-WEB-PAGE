@@ -1,0 +1,32 @@
+/* Support page-specific spacing and cards */
+
+.support-card{
+    background:#111827;
+    padding:2.5rem 1.75rem;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.support-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(0,255,255,.15);
+}
+
+.support-contact-box{
+    background:#111827;
+    padding:3.5rem 2rem;
+    border-radius:25px;
+}
+
+.info-box{
+    background:#111827;
+    padding:1rem 1.5rem;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+
+.accordion-button:focus{
+    box-shadow:none;
+}

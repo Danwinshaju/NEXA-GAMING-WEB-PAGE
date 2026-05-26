@@ -1,0 +1,34 @@
+/* Mouse page-specific overrides */
+
+.product-card{
+    background:#161b22;
+    border-radius:18px;
+    transition:0.3s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.product-content{
+    text-align:center;
+}
+
+.sale-badge{
+    top:10px;
+    left:10px;
+}
+
+.cart-btn{
+    background:#1f2937;
+    color:#fff;
+    border:1px solid #374151;
+    padding:10px 20px;
+}
+
+.cart-btn:hover{
+    background:#0dcaf0;
+    color:#000;
+}
+

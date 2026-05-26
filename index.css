@@ -1,0 +1,1185 @@
+    *{
+        margin: 00;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background: #0b0f19;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+    }
+
+
+    /* HERO SECTION */
+
+    .hero{
+        background:
+        linear-gradient(rgba(0,0,0,0.7),
+        rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1400&auto=format&fit=crop');
+
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero-text h1{
+        color: white;
+        font-size: 65px;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    .hero-text span{
+        color: cyan;
+        text-shadow: 0 0 15px cyan;
+    }
+
+    .hero-text p{
+        color: #ddd;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .btn-shop{
+        margin-top: 25px;
+        background: cyan;
+        color: black;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: 0.4s;
+    }
+
+    .btn-shop:hover{
+        background: white;
+        transform: scale(1.05);
+    }
+
+    .hero-img{
+        width: 90%;
+        border-radius: 20px;
+        box-shadow: 0 0 30px cyan;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float{
+
+        0%{
+            transform: translateY(0);
+        }
+
+        50%{
+            transform: translateY(-15px);
+        }
+
+        100%{
+            transform: translateY(0);
+        }
+    }
+
+    /* PRODUCTS */
+
+    .products{
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .section-title{
+        color: white;
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .product-card{
+        background: #111827;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: 0.4s;
+        box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    .product-card:hover{
+        transform: translateY(-10px);
+        box-shadow: 0 0 30px cyan;
+    }
+
+    .product-img{
+        overflow: hidden;
+    }
+
+    .product-img img{
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .product-card:hover img{
+        transform: scale(1.1);
+    }
+
+    .product-content{
+        padding: 20px;
+        text-align: center;
+    }
+
+    .product-content h4{
+        color: white;
+    }
+
+    .product-content p{
+        color: cyan;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .btn-cart{
+        background: cyan;
+        border-radius: 30px;
+        padding: 10px 25px;
+        font-weight: bold;
+    }
+
+    .btn-cart:hover{
+        background: white;
+    }
+
+    /* BANNER */
+
+    .banner{
+        padding-bottom: 100px;
+    }
+
+    .banner-box{
+        background:
+        linear-gradient(to right,#06b6d4,#3b82f6);
+
+        padding: 60px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .banner-box h2{
+        color: white;
+        font-size: 60px;
+        font-weight: bold;
+    }
+
+    .banner-box p{
+        color: white;
+        font-size: 20px;
+    }
+
+    /* FOOTER */
+
+    footer{
+        background: #050816;
+        padding: 40px 0;
+        border-top: 1px solid cyan;
+    }
+
+    footer p{
+        color: #bbb;
+    }
+
+    .social-icons i{
+        color: white;
+        margin: 0 10px;
+        font-size: 25px;
+        transition: 0.3s;
+    }
+
+    .social-icons i:hover{
+        color: cyan;
+        transform: scale(1.2);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:991px){
+
+        .hero-text{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-text h1{
+            font-size: 45px;
+        }
+
+        .banner-box h2{
+            font-size: 40px;
+        }
+    }
+
+
+    /* =========================
+    GLOBAL STYLES
+    ========================= */
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 10px cyan,
+                    0 0 20px cyan;
+    }
+
+    /* =========================
+    FEATURE SECTION
+    ========================= */
+
+    .feature-box {
+        background: rgba(17, 24, 39, 0.8);
+        border: 1px solid rgba(0,255,255,0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 35px 25px;
+        transition: 0.4s;
+    }
+
+    .feature-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 25px cyan;
+    }
+
+    .feature-icon {
+        font-size: 50px;
+        color: cyan;
+        margin-bottom: 20px;
+    }
+
+    /* =========================
+    TESTIMONIAL SECTION
+    ========================= */
+
+    .testimonial-card {
+        background: #111827;
+        border-radius: 20px;
+        padding: 30px;
+        transition: 0.4s;
+        height: 100%;
+    }
+
+    .testimonial-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px cyan;
+    }
+
+    .testimonial-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid cyan;
+        object-fit: cover;
+    }
+
+    /* =========================
+    CTA SECTION
+    ========================= */
+
+    .cta-section {
+        background:
+        linear-gradient(rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)),
+        url('https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1400&auto=format&fit=crop');
+
+        background-size: cover;
+        background-position: center;
+        border-radius: 25px;
+        padding: 80px 30px;
+    }
+
+    .cta-section h2 {
+        font-size: 55px;
+        font-weight: bold;
+    }
+
+    .cta-section p {
+        color: #ddd;
+        font-size: 20px;
+    }
+
+    /* =========================
+    CARD HOVER EFFECT
+    ========================= */
+
+    .card {
+        transition: 0.4s;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 25px cyan;
+    }
+
+    /* =========================
+    BUTTON EFFECT
+    ========================= */
+
+    .btn-info {
+        transition: 0.4s;
+    }
+
+    .btn-info:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px cyan;
+    }
+    .card:hover{
+        transform: translateY(-8px);
+        transition: 0.4s;
+        box-shadow: 0 0 20px cyan !important;
+    }
+    /* =========================
+    GAMING VIDEO HERO
+    ========================= */
+
+    .hero-video-slider{
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+    }
+
+    /* VIDEO */
+
+    .bg-video{
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+
+        filter:
+        brightness(0.35)
+        contrast(1.2)
+        saturate(1.3);
+
+        animation: zoomVideo 12s linear infinite alternate;
+    }
+
+    /* VIDEO ZOOM */
+
+    @keyframes zoomVideo{
+
+        from{
+            transform: scale(1);
+        }
+
+        to{
+            transform: scale(1.08);
+        }
+
+    }
+
+    /* DARK GAMING OVERLAY */
+
+    .gaming-overlay{
+        position: absolute;
+        inset: 0;
+
+        background:
+        radial-gradient(circle at top left,
+        rgba(0,255,255,0.18),
+        transparent 35%),
+
+
+        radial-gradient(circle at bottom right,
+        rgba(140,0,255,0.25),
+        transparent 35%),
+
+
+        linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.85));
+
+        z-index: 1;
+    }
+
+    /* RGB BORDER LINES */
+
+    .top-line{
+        top: 0;
+    }
+
+    .bottom-line{
+        bottom: 0;
+    }
+
+    @keyframes rgbMove{
+
+        0%{
+            background-position: 0%;
+        }
+
+        100%{
+            background-position: 300%;
+        }
+
+    }
+
+    /* HERO CONTENT */
+
+    .hero-content{
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 5;
+
+        width: 100%;
+        max-width: 900px;
+
+        text-align: center;
+
+        padding: 30px;
+    }
+
+    /* ===================================
+PREMIUM VIDEO HERO SECTION
+=================================== */
+
+.video-section{
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+/* MAIN SLIDER */
+
+.hero-video-slider{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* CAROUSEL */
+
+.carousel-inner,
+.carousel-item{
+    width: 100%;
+    height: 100vh;
+}
+
+/* VIDEO */
+
+.bg-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    filter:
+    brightness(0.65)
+    contrast(1.15)
+    saturate(1.2);
+
+    transform: scale(1.05);
+}
+
+/* SOFT OVERLAY */
+
+.gaming-overlay{
+    position: absolute;
+    inset: 0;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.45));
+
+    z-index: 2;
+}
+
+/* RGB TOP & BOTTOM */
+
+.rgb-line{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 5;
+
+    background:
+    linear-gradient(
+    90deg,
+    cyan,
+    blue,
+    purple,
+    cyan);
+
+    background-size: 300%;
+
+    animation: rgbMove 5s linear infinite;
+}
+
+.top-line{
+    top: 0;
+}
+
+.bottom-line{
+    bottom: 0;
+}
+
+@keyframes rgbMove{
+
+    0%{
+        background-position: 0%;
+    }
+
+    100%{
+        background-position: 300%;
+    }
+
+}
+
+/* CONTENT */
+
+.hero-content{
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    width: 90%;
+    max-width: 1000px;
+
+    text-align: center;
+}
+
+/* BADGE */
+
+.gaming-badge{
+    display: inline-block;
+
+    background: rgba(0,255,255,0.15);
+
+    border: 1px solid cyan;
+
+    color: cyan;
+
+    padding: 12px 28px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 0 20px cyan;
+}
+
+/* TITLE */
+
+.hero-content h1{
+    font-size: 95px;
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    color: white;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+    0 0 15px rgba(0,0,0,0.6),
+    0 0 25px rgba(0,255,255,0.3);
+}
+
+/* CYAN TEXT */
+
+.hero-content h1 span{
+    color: cyan;
+
+    text-shadow:
+    0 0 15px cyan,
+    0 0 35px cyan;
+}
+
+/* PARAGRAPH */
+
+.hero-content p{
+    color: #f1f5f9;
+
+    font-size: 20px;
+
+    max-width: 750px;
+
+    margin: auto auto 40px;
+
+    line-height: 1.8;
+
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* BUTTON AREA */
+
+.hero-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* BUTTON */
+
+.btn-cyan{
+    background: cyan;
+    color: black;
+
+    padding: 15px 45px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.4s;
+}
+
+.btn-cyan:hover{
+    transform: translateY(-6px);
+
+    box-shadow:
+    0 0 20px cyan,
+    0 0 50px cyan;
+}
+
+/* OUTLINE BUTTON */
+
+.btn-outline-gaming{
+    border: 2px solid white;
+
+    color: white;
+
+    padding: 15px 45px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.4s;
+}
+
+.btn-outline-gaming:hover{
+    background: white;
+    color: black;
+
+    transform: translateY(-6px);
+}
+
+/* INDICATORS */
+
+.carousel-indicators button{
+    width: 12px !important;
+    height: 12px !important;
+
+    border-radius: 50%;
+
+    background-color: cyan !important;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .hero-video-slider{
+        height: 80vh;
+    }
+
+    .carousel-inner,
+    .carousel-item{
+        height: 80vh;
+    }
+
+    .hero-content h1{
+        font-size: 45px;
+    }
+
+    .hero-content p{
+        font-size: 16px;
+    }
+
+    .btn-cyan,
+    .btn-outline-gaming{
+        padding: 12px 30px;
+    }
+
+}
+
+    /* BADGE */
+
+    .gaming-badge{
+        display: inline-block;
+
+        background: rgba(0,255,255,0.12);
+
+        border: 1px solid cyan;
+
+        color: cyan;
+
+        padding: 12px 30px;
+
+        border-radius: 50px;
+
+        font-weight: bold;
+
+        margin-bottom: 30px;
+
+        box-shadow: 0 0 20px cyan;
+    }
+
+    /* TITLE */
+
+    /* TITLE */
+
+.hero-content h1{
+    font-size: 95px;
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    color: white;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+    0 4px 20px rgba(0,0,0,0.55);
+}
+
+/* CYAN TEXT */
+
+.hero-content h1 span{
+    color: #7dd3fc;
+
+    text-shadow:
+    0 0 8px rgba(125,211,252,0.25);
+}
+
+    /* TEXT */
+
+    .hero-content p{
+        color: #d1d5db;
+
+        font-size: 20px;
+
+        max-width: 700px;
+
+        margin: auto auto 40px;
+
+        line-height: 1.8;
+    }
+
+    /* BUTTON AREA */
+
+    .hero-buttons{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+
+    .btn-cyan{
+        background: cyan;
+        color: black;
+
+        padding: 15px 45px;
+
+        border-radius: 50px;
+
+        font-weight: bold;
+
+        text-decoration: none;
+
+        transition: 0.4s;
+    }
+
+    .btn-cyan:hover{
+        transform: translateY(-6px);
+
+        box-shadow:
+        0 0 20px cyan,
+        0 0 50px cyan;
+    }
+
+    /* OUTLINE BUTTON */
+
+    .btn-outline-gaming{
+        border: 2px solid white;
+
+        color: white;
+
+        padding: 15px 45px;
+
+        border-radius: 50px;
+
+        font-weight: bold;
+
+        text-decoration: none;
+
+        transition: 0.4s;
+    }
+
+    .btn-outline-gaming:hover{
+        background: white;
+        color: black;
+
+        transform: translateY(-6px);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:991px){
+
+        .hero-content h1{
+            font-size: 60px;
+        }
+
+    }
+
+    @media(max-width:768px){
+
+        .hero-video-slider{
+            height: 90vh;
+        }
+        .hero-content{
+            padding: 20px;
+        }
+
+        .hero-content h1{
+            font-size: 40px;
+        }
+
+        .hero-content p{
+            font-size: 16px;
+        }
+
+    }
+   /* ===================================
+PREMIUM VIDEO HERO SECTION
+=================================== */
+
+.video-section{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+/* MAIN SLIDER */
+
+.hero-video-slider{
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+/* CAROUSEL */
+
+.carousel-inner,
+.carousel-item{
+    width: 100%;
+    height: 75vh;
+}
+
+/* VIDEO */
+
+.bg-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    filter:
+    brightness(0.9)
+    contrast(1.08)
+    saturate(1.1);
+
+    transform: scale(1.05);
+}
+
+/* DARK OVERLAY */
+
+.gaming-overlay{
+    position: absolute;
+    inset: 0;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.55));
+
+    z-index: 2;
+}
+
+/* RGB LINES */
+
+.rgb-line{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 5;
+
+    background:
+    linear-gradient(
+    90deg,
+    cyan,
+    blue,
+    purple,
+    cyan);
+
+    background-size: 300%;
+
+    animation: rgbMove 5s linear infinite;
+}
+
+.top-line{
+    top: 0;
+}
+
+.bottom-line{
+    bottom: 0;
+}
+
+@keyframes rgbMove{
+
+    0%{
+        background-position: 0%;
+    }
+
+    100%{
+        background-position: 300%;
+    }
+
+}
+
+/* HERO CONTENT */
+
+.hero-content{
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    width: 90%;
+    max-width: 1000px;
+
+    text-align: center;
+}
+
+/* BADGE */
+
+.gaming-badge{
+    display: inline-block;
+
+    background: rgba(0,255,255,0.15);
+
+    border: 1px solid cyan;
+
+    color: cyan;
+
+    padding: 12px 28px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 0 20px cyan;
+}
+
+/* TITLE */
+
+.hero-content h1{
+    font-size: 95px;
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    color: white;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+    0 0 15px rgba(0,0,0,0.7),
+    0 0 25px rgba(0,255,255,0.3);
+}
+
+/* CYAN TEXT */
+
+.hero-content h1 span{
+    color: cyan;
+
+    text-shadow:
+    0 0 15px cyan,
+    0 0 35px cyan;
+}
+
+/* PARAGRAPH */
+
+.hero-content p{
+    color: #f1f5f9;
+
+    font-size: 20px;
+
+    max-width: 750px;
+
+    margin: auto auto 40px;
+
+    line-height: 1.8;
+
+    text-shadow:
+    0 0 10px rgba(0,0,0,0.8);
+}
+
+/* BUTTON AREA */
+
+.hero-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* BUTTON */
+
+.btn-cyan{
+    background: cyan;
+    color: black;
+
+    padding: 15px 45px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.4s;
+}
+
+.btn-cyan:hover{
+    transform: translateY(-6px);
+
+    box-shadow:
+    0 0 20px cyan,
+    0 0 50px cyan;
+
+    color: black;
+}
+
+/* OUTLINE BUTTON */
+
+.btn-outline-gaming{
+    border: 2px solid white;
+
+    color: white;
+
+    padding: 15px 45px;
+
+    border-radius: 50px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.4s;
+}
+
+.btn-outline-gaming:hover{
+    background: white;
+    color: black;
+
+    transform: translateY(-6px);
+}
+
+/* INDICATORS */
+
+.carousel-indicators button{
+    width: 12px !important;
+    height: 12px !important;
+
+    border-radius: 50%;
+
+    background-color: cyan !important;
+}
+
+/* MOBILE */
+
+@media(max-width:991px){
+
+    .hero-content h1{
+        font-size: 60px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-video-slider{
+        height: 80vh;
+    }
+
+    .carousel-inner,
+    .carousel-item{
+        height: 80vh;
+    }
+
+    .hero-content h1{
+        font-size: 42px;
+    }
+
+    .hero-content p{
+        font-size: 16px;
+    }
+
+    .btn-cyan,
+    .btn-outline-gaming{
+        padding: 12px 30px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .hero-content h1{
+        font-size: 32px;
+    }
+
+    .hero-content p{
+        font-size: 14px;
+    }
+
+}

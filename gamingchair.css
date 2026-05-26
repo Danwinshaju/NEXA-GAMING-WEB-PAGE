@@ -1,0 +1,37 @@
+/* Gaming chair page-specific overrides */
+
+.old-price{
+    color:gray;
+    text-decoration:line-through;
+    margin-left:8px;
+}
+
+.rating i{
+    color:gold;
+    margin:2px;
+}
+
+.sale-badge{
+    top:10px;
+    left:10px;
+    background:crimson;
+    color:#fff;
+    padding:5px 12px;
+    border-radius:30px;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+.cart-btn{
+    background:#1f2937;
+    color:#fff;
+    border:1px solid #374151;
+    padding:10px 20px;
+}
+
+.cart-btn:hover{
+    background:#0dcaf0;
+    color:#000;
+}
+
+

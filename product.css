@@ -1,0 +1,12 @@
+/* Product-specific accents */
+.products-section{
+    background:#090d14;
+}
+
+.product-card{
+    border:1px solid rgba(0,255,255,.12);
+}
+
+.product-card:hover{
+    box-shadow:0 0 30px rgba(0,255,255,.12);
+}
