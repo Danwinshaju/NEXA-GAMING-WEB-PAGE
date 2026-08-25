@@ -19,12 +19,12 @@
     document.querySelectorAll('.nexa-cart-count').forEach(node => node.textContent = count);
   }
   function installCartLink() {
-    const nav = document.querySelector('.navbar .d-flex');
-    if (!nav || document.querySelector('.nexa-cart-link')) return;
+    const searchForm = document.querySelector('.navbar form.d-flex');
+    if (!searchForm || document.querySelector('.nexa-cart-link')) return;
     const link = document.createElement('a');
     link.href = './cart.html'; link.className = 'btn btn-outline-info rounded-pill nexa-cart-link ms-2';
     link.innerHTML = '<i class="fas fa-cart-shopping"></i><span class="d-none d-xl-inline ms-2">Cart</span><b class="nexa-cart-count ms-2">0</b>';
-    nav.after(link); updateBadge();
+    searchForm.after(link); updateBadge();
   }
   function toast(message) {
     let node = document.querySelector('.nexa-toast');
@@ -62,8 +62,9 @@
     let catalogue;
     const show = async () => {
       const query = input.value.trim().toLowerCase(); if (query.length < 2) { panel.classList.remove('open'); return; }
-      catalogue ||= await buildSearchIndex(); const matches = catalogue.filter(item => `${item.name} ${item.category}`.toLowerCase().includes(query)).slice(0, 6);
-      panel.innerHTML = matches.length ? matches.map(item => `<a href="${item.url}"><img src="${item.image}" alt=""><span><strong>${item.name}</strong><small>${item.category} · ${item.price}</small></span></a>`).join('') : '<p>No matching products found</p>';
+      catalogue ||= await buildSearchIndex(); const exactMatches = catalogue.filter(item => `${item.name} ${item.category}`.toLowerCase().includes(query));
+      const matches = (exactMatches.length ? exactMatches : catalogue).slice(0, 6);
+      panel.innerHTML = `${exactMatches.length ? '' : '<p class="nexa-suggestion-label">No exact match — popular products</p>'}${matches.map(item => `<a href="${item.url}"><img src="${item.image}" alt=""><span><strong>${item.name}</strong><small>${item.category} · ${item.price}</small></span></a>`).join('')}`;
       panel.classList.add('open');
     };
     input.addEventListener('input', show); input.addEventListener('focus', show);
