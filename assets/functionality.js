@@ -9,11 +9,26 @@
   const writeCart = cart => { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateBadge(); };
   const money = value => `$${Number(value || 0).toFixed(2).replace('.00', '')}`;
   const productFromCard = card => ({
-    id: `${location.pathname.split('/').pop() || 'index.html'}-${card.querySelector('h5')?.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    id: card.dataset.productId,
     name: card.querySelector('h5')?.textContent.trim() || 'Gaming Product',
-    price: Number((card.querySelector('.new-price')?.textContent || '0').replace(/[^0-9.]/g, '')),
+    price: Number((card.querySelector('.new-price')?.textContent || card.querySelector('.card-body .text-info')?.textContent || '0').replace(/[^0-9.]/g, '')),
     image: card.querySelector('img')?.src || '', quantity: 1
   });
+  function installProductIds() {
+    const file = location.pathname.split('/').pop() || 'index.html';
+    const prefixes = { 'index.html':'HOME', 'product.html':'ALL', 'mouse.html':'MOUSE', 'keyboard.html':'KEYBOARD', 'headphones.html':'HEADSET', 'gamingchair.html':'CHAIR' };
+    const prefix = prefixes[file] || 'PRODUCT';
+    const buttons = [...document.querySelectorAll('button')].filter(button => /add\s*to\s*cart/i.test(button.textContent));
+    buttons.forEach((button, index) => {
+      const card = button.closest('.product-card, .card'); if (!card) return;
+      const id = `NX-${prefix}-${String(index + 1).padStart(3, '0')}`; card.dataset.productId = id;
+      button.classList.add('cart-btn'); button.dataset.productId = id;
+      if (!card.querySelector('.nexa-product-id')) {
+        const label = document.createElement('small'); label.className = 'nexa-product-id'; label.textContent = `Product ID: ${id}`; label.style.cssText = 'display:block;color:#8b9aaa;font-size:10px;letter-spacing:.06em;margin:4px 0 8px';
+        card.querySelector('h5')?.after(label);
+      }
+    });
+  }
   function updateBadge() {
     const count = readCart().reduce((total, item) => total + item.quantity, 0);
     document.querySelectorAll('.nexa-cart-count').forEach(node => node.textContent = count);
@@ -34,8 +49,8 @@
     node.timer = setTimeout(() => node.classList.remove('show'), 1800);
   }
   function installCartButtons() {
-    document.querySelectorAll('.product-card').forEach(card => {
-      const button = card.querySelector('.cart-btn'); if (!button || button.dataset.ready) return;
+    document.querySelectorAll('[data-product-id]').forEach(card => {
+      const button = card.querySelector('button.cart-btn'); if (!button || button.dataset.ready) return;
       button.dataset.ready = 'true'; button.type = 'button';
       button.addEventListener('click', () => {
         const product = productFromCard(card); const cart = readCart(); const found = cart.find(item => item.id === product.id);
@@ -98,5 +113,5 @@
     root.innerHTML = `<div class="nexa-cart-items">${cart.map(item=>`<article data-id="${item.id}"><img src="${item.image}" alt="${item.name}"><div><h4>${item.name}</h4><strong>${money(item.price)}</strong><button class="nexa-remove">Remove</button></div><label>Quantity<select>${[1,2,3,4,5,6,7,8,9,10].map(q=>`<option ${q===item.quantity?'selected':''}>${q}</option>`).join('')}</select></label><b>${money(item.price*item.quantity)}</b></article>`).join('')}</div><aside><h3>Order Summary</h3><p><span>Subtotal</span><b>${money(total)}</b></p><p><span>Delivery</span><b>Free</b></p><hr><p class="fs-5"><span>Total</span><b>${money(total)}</b></p><button class="btn btn-info w-100 rounded-pill fw-bold">Proceed To Checkout</button></aside>`;
     root.querySelectorAll('article').forEach(article => { const id=article.dataset.id; article.querySelector('select').addEventListener('change',e=>{const c=readCart();c.find(i=>i.id===id).quantity=Number(e.target.value);writeCart(c);renderCart();}); article.querySelector('.nexa-remove').addEventListener('click',()=>{writeCart(readCart().filter(i=>i.id!==id));renderCart();}); });
   }
-  document.addEventListener('DOMContentLoaded', () => { installCartLink(); installCartButtons(); installSearch(); installFilters(); renderCart(); updateBadge(); });
+  document.addEventListener('DOMContentLoaded', () => { installProductIds(); installCartLink(); installCartButtons(); installSearch(); installFilters(); renderCart(); updateBadge(); });
 })();
