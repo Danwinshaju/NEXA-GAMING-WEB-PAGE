@@ -20,7 +20,8 @@
   }
   function installCartLink() {
     const searchForm = document.querySelector('.navbar form.d-flex');
-    if (!searchForm || document.querySelector('.nexa-cart-link')) return;
+    if (document.querySelector('.nexa-cart-link')) { updateBadge(); return; }
+    if (!searchForm) return;
     const link = document.createElement('a');
     link.href = './cart.html'; link.className = 'btn btn-outline-info rounded-pill nexa-cart-link ms-2';
     link.innerHTML = '<i class="fas fa-cart-shopping"></i><span class="d-none d-xl-inline ms-2">Cart</span><b class="nexa-cart-count ms-2">0</b>';
