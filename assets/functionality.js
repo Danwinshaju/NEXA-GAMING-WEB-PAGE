@@ -37,9 +37,11 @@
     const cart = readCart();
     document.querySelectorAll('button.cart-btn[data-product-id]').forEach(button => {
       const item = cart.find(entry => entry.id === button.dataset.productId);
-      button.textContent = item ? `In Cart (${item.quantity})` : 'Add To Cart';
+      button.innerHTML = item
+        ? `<span class="nexa-qty-action" data-action="minus" aria-hidden="true">−</span><b class="nexa-button-qty">${item.quantity}</b><span class="nexa-qty-action" data-action="plus" aria-hidden="true">+</span>`
+        : 'Add To Cart';
       button.classList.toggle('nexa-in-cart', Boolean(item));
-      button.setAttribute('aria-label', item ? `Add another. ${item.quantity} currently in cart` : 'Add to cart');
+      button.setAttribute('aria-label', item ? `Quantity ${item.quantity}. Use minus or plus to update cart` : 'Add to cart');
     });
   }
   function installCartLink() {
@@ -61,8 +63,13 @@
     document.querySelectorAll('[data-product-id]').forEach(card => {
       const button = card.querySelector('button.cart-btn'); if (!button || button.dataset.ready) return;
       button.dataset.ready = 'true'; button.type = 'button';
-      button.addEventListener('click', () => {
+      button.addEventListener('click', event => {
         const product = productFromCard(card); const cart = readCart(); const found = cart.find(item => item.id === product.id);
+        const action = event.target.closest('[data-action]')?.dataset.action;
+        if (action === 'minus' && found) {
+          if (found.quantity > 1) found.quantity--; else cart.splice(cart.indexOf(found), 1);
+          writeCart(cart); toast(`${product.name} quantity updated`); return;
+        }
         if (found) found.quantity = Math.min(10, found.quantity + 1); else cart.push(product);
         writeCart(cart); toast(`${product.name} added to cart`);
       });
