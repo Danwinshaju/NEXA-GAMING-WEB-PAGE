@@ -30,8 +30,18 @@ function Provider({ children }) {
     });
     notify('Product added to cart');
   };
+  const addWithQuantity = (id, quantity) => {
+    const safeQuantity = Math.max(1, Math.min(10, Number(quantity) || 1));
+    setCart(current => {
+      const found = current.some(item => item.id === id);
+      return found
+        ? current.map(item => item.id === id ? { ...item, quantity: safeQuantity } : item)
+        : [...current, { id, quantity: safeQuantity }];
+    });
+    notify('Cart quantity updated');
+  };
   const value = {
-    cart, wishlist, add,
+    cart, wishlist, add, addWithQuantity,
     remove: id => setCart(current => current.filter(item => item.id !== id)),
     quantity: (id, quantity) => setCart(current => current.map(item => item.id === id ? { ...item, quantity: Math.max(1, Math.min(10, quantity)) } : item)),
     toggleWish: id => setWishlist(current => current.includes(id) ? current.filter(item => item !== id) : [...current, id]),
@@ -141,9 +151,19 @@ function Shop() {
 function Product() {
   const { id } = useParams();
   const product = products.find(item => item.id === id);
-  const { add, toggleWish, wishlist } = useStore();
+  const { addWithQuantity, cart, quantity: updateQuantity, toggleWish, wishlist } = useStore();
+  const cartItem = cart.find(item => item.id === id);
+  const [selectedQuantity, setSelectedQuantity] = useState(cartItem?.quantity || 1);
+  useEffect(() => {
+    if (cartItem) setSelectedQuantity(cartItem.quantity);
+  }, [cartItem?.quantity]);
   if (!product) return <NotFound />;
-  return <main className="product-page"><div className="product-detail"><img src={product.image} alt={product.name} /><div><p className="eyebrow">{product.category}. {product.tag}</p><small className="product-id">Product ID {product.id}</small><h1>{product.name}</h1><div className="rating">Rating {product.rating} out of 5. <span>Editor reviewed</span></div><h2>{money(product.price)}</h2><p>{product.description}</p><ul><li>Responsibly selected materials</li><li>Complimentary delivery over INR 15,000</li><li>Easy returns within 14 days</li></ul><button className="primary wide detail-cart" onClick={() => add(product.id)}><CartIcon /><span>Add to cart</span></button><button className="secondary wide" onClick={() => toggleWish(product.id)}>{wishlist.includes(product.id) ? 'Remove from wishlist' : 'Save to wishlist'}</button></div></div></main>;
+  const changeQuantity = event => {
+    const nextQuantity = Number(event.target.value);
+    setSelectedQuantity(nextQuantity);
+    if (cartItem) updateQuantity(product.id, nextQuantity);
+  };
+  return <main className="product-page"><div className="product-detail"><img src={product.image} alt={product.name} /><div><p className="eyebrow">{product.category}. {product.tag}</p><small className="product-id">Product ID {product.id}</small><h1>{product.name}</h1><div className="rating">Rating {product.rating} out of 5. <span>Editor reviewed</span></div><h2>{money(product.price)}</h2><p>{product.description}</p><ul><li>Responsibly selected materials</li><li>Complimentary delivery over INR 15,000</li><li>Easy returns within 14 days</li></ul><label className="detail-quantity">Quantity<select value={selectedQuantity} onChange={changeQuantity}>{Array.from({ length: 10 }, (_, index) => index + 1).map(number => <option key={number}>{number}</option>)}</select></label><button className="primary wide detail-cart" onClick={() => addWithQuantity(product.id, selectedQuantity)}><CartIcon /><span>{cartItem ? 'Update cart' : 'Add to cart'}</span></button><button className="secondary wide" onClick={() => toggleWish(product.id)}>{wishlist.includes(product.id) ? 'Remove from wishlist' : 'Save to wishlist'}</button></div></div></main>;
 }
 
 function DepartmentPage({ department, label, title, description }) {

@@ -6,7 +6,7 @@
     ['Gaming Chairs', 'gamingchair.html']
   ];
   const readCart = () => { try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch { return []; } };
-  const writeCart = cart => { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateBadge(); };
+  const writeCart = cart => { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateBadge(); updateCartButtons(); };
   const money = value => `$${Number(value || 0).toFixed(2).replace('.00', '')}`;
   const productFromCard = card => ({
     id: card.dataset.productId,
@@ -33,6 +33,15 @@
     const count = readCart().reduce((total, item) => total + item.quantity, 0);
     document.querySelectorAll('.nexa-cart-count').forEach(node => node.textContent = count);
   }
+  function updateCartButtons() {
+    const cart = readCart();
+    document.querySelectorAll('button.cart-btn[data-product-id]').forEach(button => {
+      const item = cart.find(entry => entry.id === button.dataset.productId);
+      button.textContent = item ? `In Cart (${item.quantity})` : 'Add To Cart';
+      button.classList.toggle('nexa-in-cart', Boolean(item));
+      button.setAttribute('aria-label', item ? `Add another. ${item.quantity} currently in cart` : 'Add to cart');
+    });
+  }
   function installCartLink() {
     const searchForm = document.querySelector('.navbar form.d-flex');
     if (document.querySelector('.nexa-cart-link')) { updateBadge(); return; }
@@ -54,7 +63,8 @@
       button.dataset.ready = 'true'; button.type = 'button';
       button.addEventListener('click', () => {
         const product = productFromCard(card); const cart = readCart(); const found = cart.find(item => item.id === product.id);
-        found ? found.quantity++ : cart.push(product); writeCart(cart); toast(`${product.name} added to cart`);
+        if (found) found.quantity = Math.min(10, found.quantity + 1); else cart.push(product);
+        writeCart(cart); toast(`${product.name} added to cart`);
       });
     });
   }
@@ -113,5 +123,5 @@
     root.innerHTML = `<div class="nexa-cart-items">${cart.map(item=>`<article data-id="${item.id}"><img src="${item.image}" alt="${item.name}"><div><h4>${item.name}</h4><strong>${money(item.price)}</strong><button class="nexa-remove">Remove</button></div><label>Quantity<select>${[1,2,3,4,5,6,7,8,9,10].map(q=>`<option ${q===item.quantity?'selected':''}>${q}</option>`).join('')}</select></label><b>${money(item.price*item.quantity)}</b></article>`).join('')}</div><aside><h3>Order Summary</h3><p><span>Subtotal</span><b>${money(total)}</b></p><p><span>Delivery</span><b>Free</b></p><hr><p class="fs-5"><span>Total</span><b>${money(total)}</b></p><button class="btn btn-info w-100 rounded-pill fw-bold">Proceed To Checkout</button></aside>`;
     root.querySelectorAll('article').forEach(article => { const id=article.dataset.id; article.querySelector('select').addEventListener('change',e=>{const c=readCart();c.find(i=>i.id===id).quantity=Number(e.target.value);writeCart(c);renderCart();}); article.querySelector('.nexa-remove').addEventListener('click',()=>{writeCart(readCart().filter(i=>i.id!==id));renderCart();}); });
   }
-  document.addEventListener('DOMContentLoaded', () => { installProductIds(); installCartLink(); installCartButtons(); installSearch(); installFilters(); renderCart(); updateBadge(); });
+  document.addEventListener('DOMContentLoaded', () => { installProductIds(); installCartLink(); installCartButtons(); installSearch(); installFilters(); renderCart(); updateBadge(); updateCartButtons(); });
 })();
